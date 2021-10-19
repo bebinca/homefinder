@@ -1,15 +1,7 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-
-export const store = configureStore({
-  reducer: {
-  },
-});
-
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+import { createStore } from "redux";
+import { init } from "../actions";
+import rootReducer from "../reducers";
+import { IStoreState } from "../types";
+import { fetchCsvData } from "./api";
+const store = createStore(rootReducer);
+export default store;

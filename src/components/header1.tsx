@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import store from "../app/store";
 class Header extends Component {
   render() {
     return (

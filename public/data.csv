@@ -1,6 +1,6 @@
-name	Total Price	Floor Size	Living Rooms	Bedrooms	Time Built
-AA	12345	100	3	2	2021
-BB	2345	60	1	1	2018
-CC	4321	90	2	1	2019
-DD	23456	200	3	4	2020
-EE	5555	110	2	3	2015
+id,name,prop1,prop2,prop3,prop4,prop5
+0,AA,10,40,40,34,15
+1,BB,6,20,50,24,35
+2,CC,20,10,50,21,50
+3,DD,3,20,20,12,30
+4,EE,30,100,10,4,10
