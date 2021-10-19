@@ -4,7 +4,7 @@ import CandidateList from "./components/candidateList";
 import Header from "./components/header1";
 import { fetchCsvData } from "./app/api";
 import store from "./app/store";
-import { init } from "./actions";
+import { initHeader } from "./actions";
 import HeaderCon from "./container/headerCon";
 class App extends Component {
   componentDidMount() {
@@ -15,11 +15,10 @@ class App extends Component {
       let x: any;
       let headers: Array<string> = [];
       for (x in qwq) {
-        console.log(x);
         headers.push(x);
       }
-      store.dispatch(init(headers));
-      console.log(store.getState());
+      headers.splice(0, 2);
+      store.dispatch(initHeader(headers));
     });
   }
   render() {

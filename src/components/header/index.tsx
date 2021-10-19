@@ -9,9 +9,6 @@ class Header extends React.PureComponent<IProps> {
   public render() {
     const { state } = this.props;
     let headers: Array<string> = state.header;
-    console.log(headers);
-    headers.splice(0, 1);
-    console.log(headers);
     return (
       <div
         className="lineup-wrapper"

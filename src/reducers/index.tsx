@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { HeaderAction } from "../actions";
+import { DataAction, HeaderAction } from "../actions";
 
 const header = (state: Array<string> = [], action: HeaderAction) => {
   switch (action.type) {
@@ -10,6 +10,16 @@ const header = (state: Array<string> = [], action: HeaderAction) => {
   }
 };
 
+const data = (state: Array<JSON> = [], action: DataAction) => {
+  switch (action.type) {
+    case "INIT":
+      return action.initialState;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   header,
+  data,
 });
