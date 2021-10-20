@@ -18,7 +18,7 @@ const Cell = ({ value, width }: IProps) => (
       className="bar"
       style={{
         height: "100%",
-        width: width.toString() + "px",
+        width: width.toString() + "%",
         backgroundColor: "#1e88e5",
         float: "left",
         position: "relative",
@@ -38,7 +38,7 @@ const Cell = ({ value, width }: IProps) => (
           left: "5px",
         }}
       >
-        <span>{{ value }}</span>
+        <span>{value}</span>
       </div>
     </div>
   </div>

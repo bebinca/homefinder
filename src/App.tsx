@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Bar from "./components/bar";
-import CandidateList from "./components/candidateList";
-import Header from "./components/header1";
 import { fetchCsvData } from "./app/api";
 import store from "./app/store";
-import { initHeader, initData } from "./actions";
+import { initHeader, initData, maxData } from "./actions";
 import HeaderCon from "./container/headerCon";
+import ListCon from "./container/listCon";
 class App extends Component {
   componentDidMount() {
     let file_path: string = "data.csv";
@@ -19,7 +17,8 @@ class App extends Component {
       }
       headers.splice(0, 2);
       store.dispatch(initHeader(headers));
-      console.log(store.getState());
+      store.dispatch(initData(arr));
+      store.dispatch(maxData(arr));
     });
   }
   render() {
@@ -29,7 +28,7 @@ class App extends Component {
         style={{ backgroundColor: "#000", width: "6720px", height: "1050px" }}
       >
         <HeaderCon />
-        <CandidateList />
+        <ListCon />
       </div>
     );
   }
