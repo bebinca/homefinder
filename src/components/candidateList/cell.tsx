@@ -1,10 +1,10 @@
-import React, { Component } from "react";
 interface IProps {
   value: number;
   width: number;
+  tag: boolean;
 }
 
-const Cell = ({ value, width }: IProps) => (
+const Cell = ({ value, width, tag }: IProps) => (
   <div
     className="cell"
     style={{
@@ -38,7 +38,7 @@ const Cell = ({ value, width }: IProps) => (
           left: "5px",
         }}
       >
-        <span>{value}</span>
+        {tag ? null : <span>{value}</span>}
       </div>
     </div>
   </div>

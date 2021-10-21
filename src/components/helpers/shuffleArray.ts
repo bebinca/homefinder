@@ -1,6 +1,7 @@
 export default function shuffleArray(array: Array<any>) {
-  return array
-    .map(a => ({ sort: Math.random(), value: a }))
-    .sort((a, b) => a.sort - b.sort)
+    console.log(array);
+    return array
+    .map(a => ({ sort: a['prop1'], value: a }))
+    .sort((a, b) => b.sort - a.sort)
     .map(a => a.value);
 }

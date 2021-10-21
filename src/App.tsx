@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { fetchCsvData } from "./app/api";
 import store from "./app/store";
-import { initHeader, initData, maxData } from "./actions";
+import { initHeader, initData, maxData, initTag } from "./actions";
 import HeaderCon from "./container/headerCon";
 import ListCon from "./container/listCon";
 class App extends Component {
@@ -19,6 +19,7 @@ class App extends Component {
       store.dispatch(initHeader(headers));
       store.dispatch(initData(arr));
       store.dispatch(maxData(arr));
+      store.dispatch(initTag(headers));
     });
   }
   render() {

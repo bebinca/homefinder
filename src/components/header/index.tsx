@@ -1,14 +1,24 @@
-import React, { Component } from "react";
-import store from "../../app/store";
+import React from "react";
 import HeaderItem from "./headerItem";
+import mount from "../../app/mount";
+import { SortDataAction, ToggleTagAction } from "../../actions";
 
 interface IProps {
   state: any;
+  sortData: (index: number) => SortDataAction;
+  toggleTag: (index: number) => ToggleTagAction;
 }
 class Header extends React.PureComponent<IProps> {
+  componentDidMount() {
+    mount.registerComponent("Header", this);
+  }
+  componentWillUnmount() {
+    mount.unregisterComponent("Header", this);
+  }
   public render() {
-    const { state } = this.props;
+    const { state, sortData, toggleTag } = this.props;
     let headers: Array<string> = state.header;
+    let tags: Array<boolean> = state.tag;
     return (
       <div
         className="lineup-wrapper"
@@ -23,9 +33,17 @@ class Header extends React.PureComponent<IProps> {
           overflow: "hidden",
           display: "flex",
         }}
+        onContextMenu={(e) => e.preventDefault()}
       >
-        {headers.map((header: any) => (
-          <HeaderItem key={header} {...header} name={header} />
+        {headers.map((header: any, index: number) => (
+          <HeaderItem
+            key={header}
+            name={header}
+            index={index}
+            sortData={sortData}
+            toggleTag={toggleTag}
+            tag={tags[index]}
+          />
         ))}
       </div>
     );

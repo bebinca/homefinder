@@ -6,7 +6,6 @@ const Animate = ({ children }: any) => {
   const [boundingBox, setBoundingBox] = useState({});
   const [prevBoundingBox, setPrevBoundingBox] = useState({});
   const prevChildren = usePrevious(children);
-  console.log(children);
   useLayoutEffect(() => {
     const newBoundingBox = calculateBoundingBoxes(children);
     setBoundingBox(newBoundingBox);

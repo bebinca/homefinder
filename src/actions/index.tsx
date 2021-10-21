@@ -24,11 +24,21 @@ export interface shuffleDataAction {
   type: "SHUFFLE_DATA";
 }
 
-export const shuffleData = (initialState: Array<JSON>): shuffleDataAction => ({
+export const shuffleData = (): shuffleDataAction => ({
   type: "SHUFFLE_DATA",
 });
 
-export type DataAction = InitDataAction | shuffleDataAction;
+export interface SortDataAction {
+  type: "SORT_DATA";
+  index: number;
+}
+
+export const sortData = (index: number): SortDataAction => ({
+  type: "SORT_DATA",
+  index,
+});
+
+export type DataAction = InitDataAction | shuffleDataAction | SortDataAction;
 
 export type MaxDataAction = {
   type: "MAX_DATA";
@@ -39,3 +49,25 @@ export const maxData = (data: Array<JSON>): MaxDataAction => ({
   type: "MAX_DATA",
   data,
 });
+
+export interface InitTagAction {
+  type: "INIT_TAG";
+  initialState: Array<string>;
+}
+
+export const initTag = (initialState: Array<string>): InitTagAction => ({
+  type: "INIT_TAG",
+  initialState,
+});
+
+export interface ToggleTagAction {
+  type: "TOGGLE_TAG";
+  index: number;
+}
+
+export const toggleTag = (index: number): ToggleTagAction => ({
+  type: "TOGGLE_TAG",
+  index,
+});
+
+export type TagAction = InitTagAction | ToggleTagAction;

@@ -1,10 +1,9 @@
 import React, { createRef } from "react";
-import { shuffleDataAction } from "../../actions";
 import Entry from "./entry";
 import Animate from "./animate";
+import mount from "../../app/mount";
 interface IProps {
   state: any;
-  shuffleData: (state: Array<JSON>) => shuffleDataAction;
 }
 
 const getEntryData = (data: any) => {
@@ -31,8 +30,14 @@ const getId = (data: any) => {
 };
 
 class CandidateList extends React.PureComponent<IProps> {
+  componentDidMount() {
+    mount.registerComponent("CandidateList", this);
+  }
+  componentWillUnmount() {
+    mount.unregisterComponent("CandidateList", this);
+  }
   public render() {
-    const { state, shuffleData } = this.props;
+    const { state } = this.props;
     let data: Array<JSON> = state.data;
     return (
       <div
@@ -46,20 +51,17 @@ class CandidateList extends React.PureComponent<IProps> {
         }}
       >
         <Animate>
-          {data.map((dataItem: any) => (
+          {data.map((dataItem: any, index: number) => (
             <Entry
               key={getId(dataItem)}
               name={getName(dataItem)}
               dataItem={getEntryData(dataItem)}
               maxData={state.maxData}
               ref={createRef()}
+              index={index}
             />
           ))}
         </Animate>
-        <button
-          style={{ width: "30px", height: "30px" }}
-          onClick={() => shuffleData(data)}
-        />
       </div>
     );
   }
