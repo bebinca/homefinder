@@ -71,3 +71,60 @@ export const toggleTag = (index: number): ToggleTagAction => ({
 });
 
 export type TagAction = InitTagAction | ToggleTagAction;
+
+export interface InitWidthAction {
+  type: "INIT_WIDTH";
+  initialState: Array<string>;
+}
+
+export const initWidth = (initialState: Array<string>): InitWidthAction => ({
+  type: "INIT_WIDTH",
+  initialState,
+});
+
+export interface ChangeWidthAction {
+  type: "CHANGE_WIDTH";
+  index: number;
+  newWidth: number;
+}
+
+export const changeWidth = (
+  index: number,
+  newWidth: number
+): ChangeWidthAction => ({
+  type: "CHANGE_WIDTH",
+  index,
+  newWidth,
+});
+
+export type WidthAction = InitWidthAction | ChangeWidthAction;
+
+export type ToggleResizeAction = {
+  type: "TOGGLE_RESIZE";
+  value: boolean;
+};
+
+export const toggleResize = (value: boolean): ToggleResizeAction => ({
+  type: "TOGGLE_RESIZE",
+  value,
+});
+
+export type ResizeIndexAction = {
+  type: "RESIZE_INDEX";
+  index: number;
+};
+
+export const resizeIndex = (index: number): ResizeIndexAction => ({
+  type: "RESIZE_INDEX",
+  index,
+});
+
+export type ResizeLeftAction = {
+  type: "RESIZE_LEFT";
+  left: number;
+};
+
+export const resizeLeft = (left: number): ResizeLeftAction => ({
+  type: "RESIZE_LEFT",
+  left,
+});

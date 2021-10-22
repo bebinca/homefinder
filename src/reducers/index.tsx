@@ -1,5 +1,14 @@
 import { combineReducers } from "redux";
-import { DataAction, HeaderAction, MaxDataAction, TagAction } from "../actions";
+import {
+  DataAction,
+  HeaderAction,
+  MaxDataAction,
+  TagAction,
+  WidthAction,
+  ToggleResizeAction,
+  ResizeIndexAction,
+  ResizeLeftAction,
+} from "../actions";
 import shuffleArray from "../components/helpers/shuffleArray";
 import sortArray from "../components/helpers/sortArray";
 
@@ -57,6 +66,53 @@ const data = (state: Array<JSON> = [], action: DataAction) => {
   }
 };
 
+const isResize = (state: boolean = false, action: ToggleResizeAction) => {
+  switch (action.type) {
+    case "TOGGLE_RESIZE":
+      return action.value;
+    default:
+      return state;
+  }
+};
+
+const ResizingIndex = (state: number = 0, action: ResizeIndexAction) => {
+  switch (action.type) {
+    case "RESIZE_INDEX":
+      return action.index;
+    default:
+      return state;
+  }
+};
+
+const ResizingLeft = (state: number = 0, action: ResizeLeftAction) => {
+  switch (action.type) {
+    case "RESIZE_LEFT":
+      return action.left;
+    default:
+      return state;
+  }
+};
+
+const widthList = (state: Array<number> = [], action: WidthAction) => {
+  switch (action.type) {
+    case "INIT_WIDTH":
+      let x: any;
+      let res: Array<number> = [];
+      // eslint-disable-next-line
+      for (x in action.initialState) {
+        res.push(230);
+      }
+      return res;
+    case "CHANGE_WIDTH":
+      let index = action.index;
+      let newList = state;
+      newList[index] = action.newWidth;
+      return newList;
+    default:
+      return state;
+  }
+};
+
 const maxData = (state: Array<number> = [], action: MaxDataAction) => {
   switch (action.type) {
     case "MAX_DATA":
@@ -89,4 +145,8 @@ export default combineReducers({
   data,
   maxData,
   tag,
+  isResize,
+  widthList,
+  ResizingIndex,
+  ResizingLeft,
 });

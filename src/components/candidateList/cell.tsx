@@ -2,13 +2,14 @@ interface IProps {
   value: number;
   width: number;
   tag: boolean;
+  flex: number;
 }
 
-const Cell = ({ value, width, tag }: IProps) => (
+const Cell = ({ value, width, tag, flex }: IProps) => (
   <div
     className="cell"
     style={{
-      flex: "0 0 230px",
+      flex: "0 0 " + (flex ? flex.toString() : "230") + "px",
       position: "relative",
       padding: "5px",
       borderRight: "2px solid transparent",

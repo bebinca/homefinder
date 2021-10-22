@@ -42,6 +42,7 @@ const Entry = forwardRef(
             value={value}
             width={(value / maxData[index]) * 100}
             tag={store.getState().tag[index]}
+            flex={store.getState().widthList[index]}
           />
         ))}
       </div>
