@@ -58,9 +58,7 @@ class HeaderItem extends React.PureComponent<IProps> {
           borderLeft: index === 0 ? "1px solid #424242" : null,
           flexBasis: displayWidth,
           width: displayWidth,
-          padding: "7px 7px 6px 5px",
           backgroundColor: color,
-          position: "relative",
         }}
         onClick={() => sortData(index)}
         onContextMenu={() => {
@@ -80,17 +78,6 @@ class HeaderItem extends React.PureComponent<IProps> {
           }}
           draggable={false}
           className="resizer"
-          style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            height: "100%",
-            width: "1px",
-            borderLeft: "5px solid transparent",
-            borderRight: "1px solid #424242",
-            backgroundClip: "padding-box",
-            cursor: "ew-resize",
-          }}
         ></div>
       </div>
     );

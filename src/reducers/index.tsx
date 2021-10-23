@@ -9,9 +9,9 @@ import {
   ResizeIndexAction,
   ResizeLeftAction,
 } from "../actions";
-import shuffleArray from "../components/helpers/shuffleArray";
 import sortArray from "../components/helpers/sortArray";
 
+// header: Array<string>, name of each header
 const header = (state: Array<string> = [], action: HeaderAction) => {
   switch (action.type) {
     case "INIT_HEADER":
@@ -21,6 +21,7 @@ const header = (state: Array<string> = [], action: HeaderAction) => {
   }
 };
 
+// tag: Array<boolean>, record whether the column is tagged or not
 const tag = (state: Array<boolean> = [], action: TagAction) => {
   switch (action.type) {
     case "INIT_TAG":
@@ -40,13 +41,11 @@ const tag = (state: Array<boolean> = [], action: TagAction) => {
   }
 };
 
+// data: Array<JSON>, the main data list
 const data = (state: Array<JSON> = [], action: DataAction) => {
   switch (action.type) {
     case "INIT_DATA":
       return action.initialState;
-    case "SHUFFLE_DATA":
-      let newState = shuffleArray(state);
-      return newState;
     case "SORT_DATA":
       let length: number = 0;
       let i: any;
@@ -66,6 +65,7 @@ const data = (state: Array<JSON> = [], action: DataAction) => {
   }
 };
 
+// isResize: boolean, record whether the user is changing header width or not
 const isResize = (state: boolean = false, action: ToggleResizeAction) => {
   switch (action.type) {
     case "TOGGLE_RESIZE":
@@ -75,7 +75,8 @@ const isResize = (state: boolean = false, action: ToggleResizeAction) => {
   }
 };
 
-const ResizingIndex = (state: number = 0, action: ResizeIndexAction) => {
+// ResizingIndex: number, record which header is changed width
+const resizingIndex = (state: number = 0, action: ResizeIndexAction) => {
   switch (action.type) {
     case "RESIZE_INDEX":
       return action.index;
@@ -84,7 +85,8 @@ const ResizingIndex = (state: number = 0, action: ResizeIndexAction) => {
   }
 };
 
-const ResizingLeft = (state: number = 0, action: ResizeLeftAction) => {
+// ResizingLeft: number, record the position of the header that is changed width
+const resizingLeft = (state: number = 0, action: ResizeLeftAction) => {
   switch (action.type) {
     case "RESIZE_LEFT":
       return action.left;
@@ -93,6 +95,7 @@ const ResizingLeft = (state: number = 0, action: ResizeLeftAction) => {
   }
 };
 
+// widthList: Array<number>, record the width of every column
 const widthList = (state: Array<number> = [], action: WidthAction) => {
   switch (action.type) {
     case "INIT_WIDTH":
@@ -113,6 +116,7 @@ const widthList = (state: Array<number> = [], action: WidthAction) => {
   }
 };
 
+// maxData: Array<number>, record the max data of each column
 const maxData = (state: Array<number> = [], action: MaxDataAction) => {
   switch (action.type) {
     case "MAX_DATA":
@@ -147,6 +151,6 @@ export default combineReducers({
   tag,
   isResize,
   widthList,
-  ResizingIndex,
-  ResizingLeft,
+  resizingIndex,
+  resizingLeft,
 });

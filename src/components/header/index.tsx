@@ -10,6 +10,7 @@ import {
   ChangeWidthAction,
 } from "../../actions";
 import store from "../../app/store";
+import "./index.css";
 
 interface IProps {
   state: any;
@@ -43,17 +44,6 @@ class Header extends React.PureComponent<IProps> {
     return (
       <div
         className="lineup-wrapper"
-        style={{
-          flex: "0 0",
-          height: "50px",
-          paddingLeft: "150px",
-          flexDirection: "row",
-          borderBottom: "1px solid #424242",
-          backgroundColor: "#212121",
-          position: "relative",
-          overflow: "hidden",
-          display: "flex",
-        }}
         onContextMenu={(e) => {
           e.preventDefault();
         }}
@@ -64,8 +54,8 @@ class Header extends React.PureComponent<IProps> {
         }}
         onMouseMove={(e) => {
           if (store.getState().isResize) {
-            let index = store.getState().ResizingIndex;
-            let left = store.getState().ResizingLeft;
+            let index = store.getState().resizingIndex;
+            let left = store.getState().resizingLeft;
             let newWidth = e.clientX - left - 12;
             changeWidth(index, newWidth);
             mount.refreshComponent("Header");

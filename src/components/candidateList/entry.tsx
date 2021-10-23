@@ -13,28 +13,10 @@ const Entry = forwardRef(
       ref={ref}
       className="entry"
       style={{
-        flex: "0 0 30px",
-        display: "flex",
-        flexDirection: "row",
-        borderBottom: "1px solid #424242",
         backgroundColor: index % 2 ? "#212121" : "#000",
       }}
     >
-      <div
-        className="name"
-        style={{
-          color: "#fff",
-          lineHeight: "30px",
-          flex: "0 0 150px",
-          padding: "0 5px",
-          whiteSpace: "nowrap",
-          width: "150px",
-          overflow: "hidden",
-          boxSizing: "border-box",
-        }}
-      >
-        {name}
-      </div>
+      <div className="entry-name">{name}</div>
       <div className="cell-wrapper" style={{ display: "flex" }}>
         {dataItem.map((value: number, index) => (
           <Cell

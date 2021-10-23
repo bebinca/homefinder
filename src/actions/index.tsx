@@ -1,3 +1,5 @@
+// Action about header, init header
+
 export interface InitHeaderAction {
   type: "INIT_HEADER";
   initialState: Array<string>;
@@ -10,6 +12,8 @@ export const initHeader = (initialState: Array<string>): InitHeaderAction => ({
 
 export type HeaderAction = InitHeaderAction;
 
+// Action about data, sort data and init data
+
 export interface InitDataAction {
   type: "INIT_DATA";
   initialState: Array<JSON>;
@@ -18,14 +22,6 @@ export interface InitDataAction {
 export const initData = (initialState: Array<JSON>): InitDataAction => ({
   type: "INIT_DATA",
   initialState,
-});
-
-export interface shuffleDataAction {
-  type: "SHUFFLE_DATA";
-}
-
-export const shuffleData = (): shuffleDataAction => ({
-  type: "SHUFFLE_DATA",
 });
 
 export interface SortDataAction {
@@ -38,7 +34,9 @@ export const sortData = (index: number): SortDataAction => ({
   index,
 });
 
-export type DataAction = InitDataAction | shuffleDataAction | SortDataAction;
+export type DataAction = InitDataAction | SortDataAction;
+
+// Action about max data, as we need max data in every column
 
 export type MaxDataAction = {
   type: "MAX_DATA";
@@ -49,6 +47,8 @@ export const maxData = (data: Array<JSON>): MaxDataAction => ({
   type: "MAX_DATA",
   data,
 });
+
+// Action about tag, init tag and toggle tag
 
 export interface InitTagAction {
   type: "INIT_TAG";
@@ -71,6 +71,9 @@ export const toggleTag = (index: number): ToggleTagAction => ({
 });
 
 export type TagAction = InitTagAction | ToggleTagAction;
+
+// Action about width,
+//init width and change width
 
 export interface InitWidthAction {
   type: "INIT_WIDTH";
@@ -98,6 +101,10 @@ export const changeWidth = (
 });
 
 export type WidthAction = InitWidthAction | ChangeWidthAction;
+
+// Action about resize,
+// as we need to change resize-state(toggle resize),
+// to get the resize-index and resize-position(resize left)
 
 export type ToggleResizeAction = {
   type: "TOGGLE_RESIZE";

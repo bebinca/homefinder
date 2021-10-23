@@ -1,0 +1,28 @@
+.lineup-wrapper {
+  flex: 0 0;
+  height: 50px;
+  padding-left: 150px;
+  flex-direction: row;
+  border-bottom: 1px solid #424242;
+  background-color: #212121;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+.header {
+  padding: 7px 7px 6px 5px;
+  position: relative;
+}
+
+.resizer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 1px;
+  border-left: 5px solid transparent;
+  border-right: 1px solid #424242;
+  background-clip: padding-box;
+  cursor: ew-resize;
+}

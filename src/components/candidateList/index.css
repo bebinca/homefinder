@@ -1,0 +1,51 @@
+.candidateList {
+  flex: 1;
+  flex-direction: column;
+  height: calc(100% - 50px);
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.entry {
+  flex: 0 0 30px;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #424242;
+}
+
+.entry-name {
+  color: #fff;
+  line-height: 30px;
+  flex: 0 0 150px;
+  padding: 0 5px;
+  white-space: nowrap;
+  width: 150px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.cell {
+  position: relative;
+  padding: 5px;
+  border-right: 2px solid transparent;
+}
+
+.bar {
+  height: 100%;
+  background-color: #1e88e5;
+  float: left;
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+  display: block;
+}
+
+.bar-text {
+  color: #fff;
+  line-height: 30px;
+  font-size: 13px;
+  position: absolute;
+  top: -5px;
+  left: 5px;
+}
