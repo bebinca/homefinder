@@ -24,12 +24,12 @@ const Animate = ({ children }: any) => {
         const domNode = child.ref.current;
         const firstBox = (prevBoundingBox as any)[child.key];
         const lastBox = (boundingBox as any)[child.key];
-        const changeInX = firstBox.top - lastBox.top;
+        const changeInY = firstBox.top - lastBox.top;
 
-        if (changeInX) {
+        if (changeInY) {
           requestAnimationFrame(() => {
             // Before the DOM paints, invert child to old position
-            domNode.style.transform = `translateY(${changeInX}px)`;
+            domNode.style.transform = `translateY(${changeInY}px)`;
             domNode.style.transition = "transform 0s";
 
             requestAnimationFrame(() => {

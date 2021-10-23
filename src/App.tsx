@@ -5,24 +5,26 @@ import { initHeader, initData, maxData, initTag, initWidth } from "./actions";
 import HeaderCon from "./container/headerCon";
 import ListCon from "./container/listCon";
 class App extends Component {
-  componentDidMount() {
+  initState() {
     let file_path: string = "data.csv";
     fetchCsvData(file_path).then((res) => {
-      let arr: any = res;
-      let qwq: any = arr[0];
+      let data: any = res;
+      let temp: any = data[0];
       let x: any;
       let headers: Array<string> = [];
-      for (x in qwq) {
+      for (x in temp) {
         headers.push(x);
       }
       headers.splice(0, 2);
       store.dispatch(initHeader(headers));
-      store.dispatch(initData(arr));
-      store.dispatch(maxData(arr));
+      store.dispatch(initData(data));
+      store.dispatch(maxData(data));
       store.dispatch(initTag(headers));
       store.dispatch(initWidth(headers));
-      console.log(store.getState());
     });
+  }
+  componentDidMount() {
+    this.initState();
   }
   render() {
     return (
