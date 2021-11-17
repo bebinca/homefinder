@@ -8,6 +8,8 @@ import {
   ToggleResizeAction,
   ResizeIndexAction,
   ResizeLeftAction,
+  WeightAction,
+  MaxSelectedAction,
 } from "../actions";
 import sortArray from "../components/helpers/sortArray";
 
@@ -41,24 +43,15 @@ const tag = (state: Array<boolean> = [], action: TagAction) => {
   }
 };
 
+
 // data: Array<JSON>, the main data list
 const data = (state: Array<JSON> = [], action: DataAction) => {
   switch (action.type) {
     case "INIT_DATA":
       return action.initialState;
     case "SORT_DATA":
-      let length: number = 0;
-      let i: any;
-      // eslint-disable-next-line
-      for (i in state[0]) {
-        length++;
-      }
-      let weight: Array<number> = new Array<number>(length - 2);
-      for (let i: number = 0; i < length - 2; i++) {
-        weight[i] = 0;
-      }
-      weight[action.index] = 1;
-      let newState1 = sortArray(state, weight);
+      let weight = action.newWeight;
+      let newState1 = sortArray(state,weight);
       return newState1;
     default:
       return state;
@@ -144,6 +137,53 @@ const maxData = (state: Array<number> = [], action: MaxDataAction) => {
   }
 };
 
+// weights: Array<number>, weight of each header
+const weight = (state: Array<number> = [], action: WeightAction) => {
+  switch (action.type) {
+    case "INIT_WEIGHT":
+      return action.initialState;
+    case "CHANGE_WEIGHT":
+      let index = action.index;
+      let newList = state;
+      if(state[index]>0)
+        newList[index] = 0;
+      else
+        newList[index] = action.newWeight;
+      return newList;
+    default:
+      return state;
+  }
+};
+
+// maxSelectedData: number, record the max data of Selected column
+const maxSelectedData = (state: number = 0, action: MaxSelectedAction) => {
+  switch (action.type) {
+    case "INIT_MAX_SELECTED":
+      return action.initialState;
+    case "CHANGE_MAX_SELECTED":
+      let res: number = 0;
+      let item: any;
+      let weight = action.weight
+      for (item of action.data) {
+        let x: any;
+        let i: number = 0;
+        let max=0;
+        for (x in item) {
+          i = i + 1;
+          if (i > 2) {
+            let temp: number = Number(item[x]);
+            let index: number = i - 3;
+            max+=weight[index]*temp;
+          }
+        }
+        if(max>res) res=max;
+      }
+      return res;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   header,
   data,
@@ -153,4 +193,6 @@ export default combineReducers({
   widthList,
   resizingIndex,
   resizingLeft,
+  weight,
+  maxSelectedData,
 });

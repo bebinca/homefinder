@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { fetchCsvData } from "./app/api";
 import store from "./app/store";
-import { initHeader, initData, maxData, initTag, initWidth } from "./actions";
+import { initHeader, initData, maxData, initTag, initWidth, initWeight, InitMaxSelected } from "./actions";
 import HeaderCon from "./container/headerCon";
 import ListCon from "./container/listCon";
 class App extends Component {
@@ -12,15 +12,20 @@ class App extends Component {
       let temp: any = data[0];
       let x: any;
       let headers: Array<string> = [];
+      let weights: Array<number> = [];
       for (x in temp) {
         headers.push(x);
+        weights.push(0);
       }
       headers.splice(0, 2);
+      weights.splice(0, 2);
       store.dispatch(initHeader(headers));
       store.dispatch(initData(data));
       store.dispatch(maxData(data));
       store.dispatch(initTag(headers));
       store.dispatch(initWidth(headers));
+      store.dispatch(initWeight(weights));
+      store.dispatch(InitMaxSelected(0));
     });
   }
   componentDidMount() {

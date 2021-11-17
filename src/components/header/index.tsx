@@ -8,18 +8,22 @@ import {
   ResizeIndexAction,
   ResizeLeftAction,
   ChangeWidthAction,
+  ChangeWeightAction,
+  ChangeMaxSelectedAction,
 } from "../../actions";
 import store from "../../app/store";
 import "./index.css";
 
 interface IProps {
   state: any;
-  sortData: (index: number) => SortDataAction;
+  sortData: (weight: Array<number>) => SortDataAction;
   toggleTag: (index: number) => ToggleTagAction;
   toggleResize: (value: boolean) => ToggleResizeAction;
   resizeIndex: (index: number) => ResizeIndexAction;
   resizeLeft: (left: number) => ResizeLeftAction;
   changeWidth: (index: number, newWidth: number) => ChangeWidthAction;
+  changeWeight: (index: number, newWeight: number) => ChangeWeightAction;
+  changeMaxSelected: (data: any, weight: Array<number>) => ChangeMaxSelectedAction;
 }
 class Header extends React.PureComponent<IProps> {
   componentDidMount() {
@@ -37,6 +41,8 @@ class Header extends React.PureComponent<IProps> {
       resizeIndex,
       resizeLeft,
       changeWidth,
+      changeWeight,
+      changeMaxSelected,
     } = this.props;
     let headers: Array<string> = state.header;
     let tags: Array<boolean> = state.tag;
@@ -49,7 +55,7 @@ class Header extends React.PureComponent<IProps> {
         }}
         onMouseUp={() => {
           toggleResize(false);
-          console.log(store.getState());
+          // console.log(store.getState());
           mount.refreshComponent("Header");
         }}
         onMouseMove={(e) => {
@@ -70,13 +76,34 @@ class Header extends React.PureComponent<IProps> {
             name={header}
             index={index}
             sortData={sortData}
+            changeWeight={changeWeight}
             toggleTag={toggleTag}
             toggleResize={toggleResize}
             resizeIndex={resizeIndex}
             resizeLeft={resizeLeft}
             tag={tags[index]}
+            changeMaxSelected={changeMaxSelected}
             width={widths[index] ? widths[index] : 230}
+            showElem={store.getState().weight[index]>0 ? true:false}
           />
+        ))}
+        {headers.map((header: any, index: number) => (
+            <HeaderItem
+                ref={header}
+                key={header}
+                name={header}
+                index={index}
+                sortData={sortData}
+                changeWeight={changeWeight}
+                changeMaxSelected={changeMaxSelected}
+                toggleTag={toggleTag}
+                toggleResize={toggleResize}
+                resizeIndex={resizeIndex}
+                resizeLeft={resizeLeft}
+                tag={tags[index]}
+                width={widths[index] ? widths[index] : 230}
+                showElem={store.getState().weight[index]>0 ? false:true}
+            />
         ))}
       </div>
     );
