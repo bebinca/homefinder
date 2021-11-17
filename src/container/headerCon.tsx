@@ -8,6 +8,8 @@ import {
   resizeIndex,
   resizeLeft,
   changeWidth,
+  changeWeight,
+  changeMaxSelected
 } from "../actions";
 
 const mapStateToProps = (state: any): { state: any } => ({
@@ -22,6 +24,8 @@ function mapDispatchToProps(dispatch: Dispatch) {
     resizeIndex: bindActionCreators(resizeIndex, dispatch),
     resizeLeft: bindActionCreators(resizeLeft, dispatch),
     changeWidth: bindActionCreators(changeWidth, dispatch),
+    changeWeight: bindActionCreators(changeWeight, dispatch),
+    changeMaxSelected: bindActionCreators(changeMaxSelected, dispatch),
   };
 }
 

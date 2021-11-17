@@ -26,12 +26,12 @@ export const initData = (initialState: Array<JSON>): InitDataAction => ({
 
 export interface SortDataAction {
   type: "SORT_DATA";
-  index: number;
+  newWeight: Array<number>;
 }
 
-export const sortData = (index: number): SortDataAction => ({
+export const sortData = ( newWeight: Array<number>): SortDataAction => ({
   type: "SORT_DATA",
-  index,
+  newWeight,
 });
 
 export type DataAction = InitDataAction | SortDataAction;
@@ -135,3 +135,63 @@ export const resizeLeft = (left: number): ResizeLeftAction => ({
   type: "RESIZE_LEFT",
   left,
 });
+
+
+// Action about weight
+//init weight and change weight
+
+export interface InitWeightAction {
+  type: "INIT_WEIGHT";
+  initialState: Array<number>;
+}
+
+export const initWeight = (initialState: Array<number>): InitWeightAction => ({
+  type: "INIT_WEIGHT",
+  initialState,
+});
+
+export interface ChangeWeightAction {
+  type: "CHANGE_WEIGHT";
+  index: number;
+  newWeight: number;
+}
+
+export const changeWeight = (
+    index: number,
+    newWeight: number
+): ChangeWeightAction => ({
+  type: "CHANGE_WEIGHT",
+  index,
+  newWeight
+});
+
+export type WeightAction = InitWeightAction | ChangeWeightAction;
+
+// Action about the max of selected data, as we need max data in selected column
+
+export interface InitMaxSelectedAction {
+  type: "INIT_MAX_SELECTED";
+  initialState: number;
+}
+
+export const InitMaxSelected = (initialState: number): InitMaxSelectedAction => ({
+  type: "INIT_MAX_SELECTED",
+  initialState,
+});
+
+export interface ChangeMaxSelectedAction {
+  type: "CHANGE_MAX_SELECTED";
+  data: any;
+  weight: Array<number>;
+}
+
+export const changeMaxSelected = (
+    data: any,
+    weight: Array<number>
+): ChangeMaxSelectedAction => ({
+  type: "CHANGE_MAX_SELECTED",
+  data,
+  weight,
+});
+
+export type MaxSelectedAction = InitMaxSelectedAction | ChangeMaxSelectedAction;

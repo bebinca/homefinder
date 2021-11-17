@@ -7,6 +7,7 @@
   display: flex;
 }
 
+
 .entry {
   flex: 0 0 30px;
   display: flex;
@@ -34,6 +35,16 @@
 .bar {
   height: 100%;
   background-color: #1e88e5;
+  float: left;
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+  display: block;
+}
+
+.bar2 {
+  height: 100%;
+  background-color: #FF0000;
   float: left;
   position: relative;
   overflow: hidden;
